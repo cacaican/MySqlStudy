@@ -32,6 +32,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/新建草稿文件" value="MySQL" />
     <property name="last_opened_file_path" value="$APPLICATION_CONFIG_DIR$/scratches" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -63,9 +64,13 @@
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="300" y="331" key="FileChooserDialogImpl/0.0.2048.1152@0.0.2048.1152" timestamp="1662839087080" />
-    <state x="112" y="309" key="Vcs.Push.Dialog.v2" timestamp="1662840164510">
+    <state x="21" y="221" key="SettingsEditor" timestamp="1662840335509">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="112" y="309" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1662840164510" />
+    <state x="21" y="221" key="SettingsEditor/0.0.2048.1152@0.0.2048.1152" timestamp="1662840335509" />
+    <state x="112" y="309" key="Vcs.Push.Dialog.v2" timestamp="1662840504638">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="112" y="309" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1662840504638" />
   </component>
 </project>
