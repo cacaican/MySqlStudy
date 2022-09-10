@@ -10,13 +10,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c970340-028d-45b8-9247-62f1791e637e" name="默认的" comment="提交">
-      <change afterPath="$PROJECT_DIR$/orcl/bak/emp.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orcl/在ORacle12c中新建scott用户.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orcl/数据文件操作.sql" afterDir="false" />
+    <list default="true" id="8c970340-028d-45b8-9247-62f1791e637e" name="默认的" comment="提交orcle之前的一些学习笔记">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orcl/在ORacle12c中新建scott用户.sql" beforeDir="false" afterPath="$PROJECT_DIR$/orcl/在ORacle12c中新建scott用户.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,9 +37,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DBE.Init.BalloonShown" value="true" />
     <property name="DatabaseDriversLRU" value="mysql&#10;oracle" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/新建草稿文件" value="MySQL" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/orcl" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -104,41 +105,46 @@
     <MESSAGE value="第一次提交" />
     <MESSAGE value="关联上项目文件" />
     <MESSAGE value="提交" />
-    <option name="LAST_COMMIT_MESSAGE" value="提交" />
+    <MESSAGE value="提交orcle之前的一些学习笔记" />
+    <option name="LAST_COMMIT_MESSAGE" value="提交orcle之前的一些学习笔记" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="842" y="338" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1662843289645">
+    <state x="842" y="252" width="814" height="767" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1662843787820">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="842" y="338" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1662843289645" />
+    <state x="842" y="252" width="814" height="767" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1662843787820" />
     <state x="300" y="331" key="FileChooserDialogImpl" timestamp="1662841164810">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="300" y="331" key="FileChooserDialogImpl/0.0.2048.1152@0.0.2048.1152" timestamp="1662841164810" />
-    <state width="1688" height="318" key="GridCell.Tab.0.bottom" timestamp="1662842327551">
+    <state width="1688" height="366" key="GridCell.Tab.0.bottom" timestamp="1662844334108">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="318" key="GridCell.Tab.0.bottom/0.0.2048.1152@0.0.2048.1152" timestamp="1662842327551" />
-    <state width="1688" height="318" key="GridCell.Tab.0.center" timestamp="1662842327551">
+    <state width="1688" height="366" key="GridCell.Tab.0.bottom/0.0.2048.1152@0.0.2048.1152" timestamp="1662844334108" />
+    <state width="1688" height="366" key="GridCell.Tab.0.center" timestamp="1662844334108">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="318" key="GridCell.Tab.0.center/0.0.2048.1152@0.0.2048.1152" timestamp="1662842327551" />
-    <state width="1688" height="318" key="GridCell.Tab.0.left" timestamp="1662842327551">
+    <state width="1688" height="366" key="GridCell.Tab.0.center/0.0.2048.1152@0.0.2048.1152" timestamp="1662844334108" />
+    <state width="1688" height="366" key="GridCell.Tab.0.left" timestamp="1662844334108">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="318" key="GridCell.Tab.0.left/0.0.2048.1152@0.0.2048.1152" timestamp="1662842327551" />
-    <state width="1688" height="318" key="GridCell.Tab.0.right" timestamp="1662842327551">
+    <state width="1688" height="366" key="GridCell.Tab.0.left/0.0.2048.1152@0.0.2048.1152" timestamp="1662844334108" />
+    <state width="1688" height="366" key="GridCell.Tab.0.right" timestamp="1662844334108">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="318" key="GridCell.Tab.0.right/0.0.2048.1152@0.0.2048.1152" timestamp="1662842327551" />
+    <state width="1688" height="366" key="GridCell.Tab.0.right/0.0.2048.1152@0.0.2048.1152" timestamp="1662844334108" />
     <state x="21" y="221" key="SettingsEditor" timestamp="1662840922558">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="21" y="221" key="SettingsEditor/0.0.2048.1152@0.0.2048.1152" timestamp="1662840922558" />
-    <state x="112" y="309" key="Vcs.Push.Dialog.v2" timestamp="1662842151526">
+    <state x="112" y="309" key="Vcs.Push.Dialog.v2" timestamp="1662843326847">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="112" y="309" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1662842151526" />
+    <state x="112" y="309" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1662843326847" />
+    <state x="923" y="453" width="334" height="246" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1662844017115">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="923" y="453" width="334" height="246" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.2048.1152@0.0.2048.1152" timestamp="1662844017115" />
     <state x="805" y="381" key="git4idea.history.wholeTree.VcsStructureChooser" timestamp="1662840974116">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
