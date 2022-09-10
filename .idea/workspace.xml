@@ -11,9 +11,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c970340-028d-45b8-9247-62f1791e637e" name="默认的" comment="提交">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orcl/bak/emp.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orcl/在ORacle12c中新建scott用户.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orcl/数据文件操作.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +24,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2EafORv1NDpkyx2MGkaBvLllQfI" />
@@ -31,14 +39,15 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DBE.Init.BalloonShown" value="true" />
-    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DatabaseDriversLRU" value="mysql&#10;oracle" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/新建草稿文件" value="MySQL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/mysql初始化sql" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/orcl" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\dataGripSpace\default\MysqlStudy\orcl" />
       <recent name="D:\workspace\dataGripSpace\default\MysqlStudy\mysql初始化sql" />
       <recent name="C:\Users\xiaocai\AppData\Roaming\JetBrains\DataGrip2020.2\scratches" />
     </key>
@@ -98,38 +107,38 @@
     <option name="LAST_COMMIT_MESSAGE" value="提交" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="842" y="338" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1662841560621">
+    <state x="842" y="338" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1662843289645">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="842" y="338" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1662841560621" />
+    <state x="842" y="338" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1662843289645" />
     <state x="300" y="331" key="FileChooserDialogImpl" timestamp="1662841164810">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="300" y="331" key="FileChooserDialogImpl/0.0.2048.1152@0.0.2048.1152" timestamp="1662841164810" />
-    <state width="1688" height="318" key="GridCell.Tab.0.bottom" timestamp="1662842113857">
+    <state width="1688" height="318" key="GridCell.Tab.0.bottom" timestamp="1662842327551">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="318" key="GridCell.Tab.0.bottom/0.0.2048.1152@0.0.2048.1152" timestamp="1662842113857" />
-    <state width="1688" height="318" key="GridCell.Tab.0.center" timestamp="1662842113857">
+    <state width="1688" height="318" key="GridCell.Tab.0.bottom/0.0.2048.1152@0.0.2048.1152" timestamp="1662842327551" />
+    <state width="1688" height="318" key="GridCell.Tab.0.center" timestamp="1662842327551">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="318" key="GridCell.Tab.0.center/0.0.2048.1152@0.0.2048.1152" timestamp="1662842113857" />
-    <state width="1688" height="318" key="GridCell.Tab.0.left" timestamp="1662842113857">
+    <state width="1688" height="318" key="GridCell.Tab.0.center/0.0.2048.1152@0.0.2048.1152" timestamp="1662842327551" />
+    <state width="1688" height="318" key="GridCell.Tab.0.left" timestamp="1662842327551">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="318" key="GridCell.Tab.0.left/0.0.2048.1152@0.0.2048.1152" timestamp="1662842113857" />
-    <state width="1688" height="318" key="GridCell.Tab.0.right" timestamp="1662842113857">
+    <state width="1688" height="318" key="GridCell.Tab.0.left/0.0.2048.1152@0.0.2048.1152" timestamp="1662842327551" />
+    <state width="1688" height="318" key="GridCell.Tab.0.right" timestamp="1662842327551">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="318" key="GridCell.Tab.0.right/0.0.2048.1152@0.0.2048.1152" timestamp="1662842113857" />
+    <state width="1688" height="318" key="GridCell.Tab.0.right/0.0.2048.1152@0.0.2048.1152" timestamp="1662842327551" />
     <state x="21" y="221" key="SettingsEditor" timestamp="1662840922558">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="21" y="221" key="SettingsEditor/0.0.2048.1152@0.0.2048.1152" timestamp="1662840922558" />
-    <state x="112" y="309" key="Vcs.Push.Dialog.v2" timestamp="1662842046071">
+    <state x="112" y="309" key="Vcs.Push.Dialog.v2" timestamp="1662842151526">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="112" y="309" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1662842046071" />
+    <state x="112" y="309" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1662842151526" />
     <state x="805" y="381" key="git4idea.history.wholeTree.VcsStructureChooser" timestamp="1662840974116">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
