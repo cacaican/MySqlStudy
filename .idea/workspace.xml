@@ -10,12 +10,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c970340-028d-45b8-9247-62f1791e637e" name="默认的" comment="第一次提交">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9227b130-7c08-4be3-9a23-079521e085e5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9227b130-7c08-4be3-9a23-079521e085e5.xml" afterDir="false" />
+    <list default="true" id="8c970340-028d-45b8-9247-62f1791e637e" name="默认的" comment="提交">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql初始化sql/mysql1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/mysql初始化sql/mysql1.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +94,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="第一次提交" />
     <MESSAGE value="关联上项目文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="关联上项目文件" />
+    <MESSAGE value="提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="提交" />
   </component>
   <component name="WindowStateProjectService">
     <state x="842" y="338" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1662841560621">
@@ -107,30 +106,30 @@
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="300" y="331" key="FileChooserDialogImpl/0.0.2048.1152@0.0.2048.1152" timestamp="1662841164810" />
-    <state width="1688" height="318" key="GridCell.Tab.0.bottom" timestamp="1662841565094">
+    <state width="1688" height="318" key="GridCell.Tab.0.bottom" timestamp="1662842113857">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="318" key="GridCell.Tab.0.bottom/0.0.2048.1152@0.0.2048.1152" timestamp="1662841565094" />
-    <state width="1688" height="318" key="GridCell.Tab.0.center" timestamp="1662841565094">
+    <state width="1688" height="318" key="GridCell.Tab.0.bottom/0.0.2048.1152@0.0.2048.1152" timestamp="1662842113857" />
+    <state width="1688" height="318" key="GridCell.Tab.0.center" timestamp="1662842113857">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="318" key="GridCell.Tab.0.center/0.0.2048.1152@0.0.2048.1152" timestamp="1662841565094" />
-    <state width="1688" height="318" key="GridCell.Tab.0.left" timestamp="1662841565094">
+    <state width="1688" height="318" key="GridCell.Tab.0.center/0.0.2048.1152@0.0.2048.1152" timestamp="1662842113857" />
+    <state width="1688" height="318" key="GridCell.Tab.0.left" timestamp="1662842113857">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="318" key="GridCell.Tab.0.left/0.0.2048.1152@0.0.2048.1152" timestamp="1662841565094" />
-    <state width="1688" height="318" key="GridCell.Tab.0.right" timestamp="1662841565094">
+    <state width="1688" height="318" key="GridCell.Tab.0.left/0.0.2048.1152@0.0.2048.1152" timestamp="1662842113857" />
+    <state width="1688" height="318" key="GridCell.Tab.0.right" timestamp="1662842113857">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="318" key="GridCell.Tab.0.right/0.0.2048.1152@0.0.2048.1152" timestamp="1662841565094" />
+    <state width="1688" height="318" key="GridCell.Tab.0.right/0.0.2048.1152@0.0.2048.1152" timestamp="1662842113857" />
     <state x="21" y="221" key="SettingsEditor" timestamp="1662840922558">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="21" y="221" key="SettingsEditor/0.0.2048.1152@0.0.2048.1152" timestamp="1662840922558" />
-    <state x="112" y="309" key="Vcs.Push.Dialog.v2" timestamp="1662840711509">
+    <state x="112" y="309" key="Vcs.Push.Dialog.v2" timestamp="1662842046071">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="112" y="309" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1662840711509" />
+    <state x="112" y="309" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1662842046071" />
     <state x="805" y="381" key="git4idea.history.wholeTree.VcsStructureChooser" timestamp="1662840974116">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
