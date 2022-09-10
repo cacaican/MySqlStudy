@@ -10,7 +10,8 @@ create table student (
 );
 show tables;
 
-CREATE USER  'testUser'@'host'  IDENTIFIED BY  'Tu123456';
+CREATE USER  'testUser'@'%'  IDENTIFIED BY  'Tu123456';
+# drop user 'testUser'@'host' 删除用户语句
 # user_name：要创建用户的名字。
 # host：表示要这个新创建的用户允许从哪台机登陆，如果只允许从本机登陆，则 填　'localhost' ，如果允许从远程登陆，则填 '%'
 # password：新创建用户的登陆数据库密码，如果没密码可以不写。
@@ -19,7 +20,12 @@ CREATE USER  'testUser'@'host'  IDENTIFIED BY  'Tu123456';
 # CREATE USER  'ccc'@'%' ；//表示新创建的用户ccc，没有密码，可以从其他电脑远程登陆mysql服务器
 # 查看用户列表：
 select * from mysql.user;
-GRANT all ON  test.*  TO  'testUser'@'host';
+GRANT ALL ON  test.*  TO  'testUser'@'%';
+revoke ALL ON  test.*  FROM  'testUser'@'%';
+FLUSH PRIVILEGES;
+show grants for testUser;
+
+REVOKE ALL PRIVILEGES ON database_name.* FROM 'user_name'@'host'; #取消权限
 # 命令：GRANT privileges ON  databasename.tablename  TO  'username'@'host'
 # privileges：表示要授予什么权力，例如可以有 select ， insert ，delete，update等，如果要授予全部权力，则填 ALL
 # databasename.tablename：表示用户的权限能用在哪个库的哪个表中，如果想要用户的权限很作用于所有的数据库所有的表，则填 *.*，*是一个通配符，表示全部。

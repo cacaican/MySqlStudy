@@ -11,6 +11,25 @@
       <user-name>root</user-name>
       <schema-mapping>
         <introspection-scope>
+          <node kind="schema">
+            <name qname="@" />
+            <name qname="sys" />
+            <name qname="mysql" />
+            <name qname="test" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="@localhost 测试用户" uuid="32bb1b16-523d-46b6-ba6a-e6ca10fab6ea">
+      <database-info product="MySQL" version="5.7.38" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MYSQL" exact-version="5.7.38" exact-driver-version="8.0">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>testUser</user-name>
+      <schema-mapping>
+        <introspection-scope>
           <node kind="schema" qname="@" />
         </introspection-scope>
       </schema-mapping>
