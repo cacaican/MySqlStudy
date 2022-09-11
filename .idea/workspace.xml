@@ -10,10 +10,23 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c970340-028d-45b8-9247-62f1791e637e" name="默认的" comment="提交">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="8c970340-028d-45b8-9247-62f1791e637e" name="默认的" comment="不知道什么文件">
+      <change afterPath="$PROJECT_DIR$/mysql初始化sql/aa.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysql初始化sql/mysql中写存储过程.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysql初始化sql/mysql中创建视图.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysql初始化sql/mysql中定义function.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysql初始化sql/mysql服务状态命令.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysql初始化sql/临时表.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysql初始化sql/分组.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysql初始化sql/创建物化视图.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysql初始化sql/复制表.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysql初始化sql/序列.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysql初始化sql/索引.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysql初始化sql/连接查询.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9227b130-7c08-4be3-9a23-079521e085e5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9227b130-7c08-4be3-9a23-079521e085e5.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql初始化sql/mysql1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/mysql初始化sql/mysql1.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,24 +34,35 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2EafORv1NDpkyx2MGkaBvLllQfI" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="新增" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DBE.Init.BalloonShown" value="true" />
-    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DatabaseDriversLRU" value="mysql&#10;oracle" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/新建草稿文件" value="MySQL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/mysql初始化sql" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/orcl" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\dataGripSpace\default\MysqlStudy\orcl" />
       <recent name="D:\workspace\dataGripSpace\default\MysqlStudy\mysql初始化sql" />
       <recent name="C:\Users\xiaocai\AppData\Roaming\JetBrains\DataGrip2020.2\scratches" />
     </key>
@@ -95,44 +119,66 @@
     <MESSAGE value="第一次提交" />
     <MESSAGE value="关联上项目文件" />
     <MESSAGE value="提交" />
-    <option name="LAST_COMMIT_MESSAGE" value="提交" />
+    <MESSAGE value="提交orcle之前的一些学习笔记" />
+    <MESSAGE value="不知道什么文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="不知道什么文件" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="842" y="338" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1662841560621">
+    <state x="842" y="252" width="814" height="767" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1662843787820">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="842" y="338" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1662841560621" />
+    <state x="842" y="252" width="814" height="767" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1662843787820" />
     <state x="300" y="331" key="FileChooserDialogImpl" timestamp="1662841164810">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="300" y="331" key="FileChooserDialogImpl/0.0.2048.1152@0.0.2048.1152" timestamp="1662841164810" />
-    <state width="1688" height="318" key="GridCell.Tab.0.bottom" timestamp="1662842113857">
+    <state width="1688" height="134" key="GridCell.Tab.0.bottom" timestamp="1662864882250">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="318" key="GridCell.Tab.0.bottom/0.0.2048.1152@0.0.2048.1152" timestamp="1662842113857" />
-    <state width="1688" height="318" key="GridCell.Tab.0.center" timestamp="1662842113857">
+    <state width="1688" height="134" key="GridCell.Tab.0.bottom/0.0.2048.1152@0.0.2048.1152" timestamp="1662864882250" />
+    <state width="1688" height="134" key="GridCell.Tab.0.center" timestamp="1662864882250">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="318" key="GridCell.Tab.0.center/0.0.2048.1152@0.0.2048.1152" timestamp="1662842113857" />
-    <state width="1688" height="318" key="GridCell.Tab.0.left" timestamp="1662842113857">
+    <state width="1688" height="134" key="GridCell.Tab.0.center/0.0.2048.1152@0.0.2048.1152" timestamp="1662864882250" />
+    <state width="1688" height="134" key="GridCell.Tab.0.left" timestamp="1662864882250">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="318" key="GridCell.Tab.0.left/0.0.2048.1152@0.0.2048.1152" timestamp="1662842113857" />
-    <state width="1688" height="318" key="GridCell.Tab.0.right" timestamp="1662842113857">
+    <state width="1688" height="134" key="GridCell.Tab.0.left/0.0.2048.1152@0.0.2048.1152" timestamp="1662864882250" />
+    <state width="1688" height="134" key="GridCell.Tab.0.right" timestamp="1662864882250">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="318" key="GridCell.Tab.0.right/0.0.2048.1152@0.0.2048.1152" timestamp="1662842113857" />
+    <state width="1688" height="134" key="GridCell.Tab.0.right/0.0.2048.1152@0.0.2048.1152" timestamp="1662864882250" />
     <state x="21" y="221" key="SettingsEditor" timestamp="1662840922558">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="21" y="221" key="SettingsEditor/0.0.2048.1152@0.0.2048.1152" timestamp="1662840922558" />
-    <state x="112" y="309" key="Vcs.Push.Dialog.v2" timestamp="1662842046071">
+    <state x="112" y="309" key="Vcs.Push.Dialog.v2" timestamp="1662845091593">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="112" y="309" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1662842046071" />
+    <state x="112" y="309" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1662845091593" />
+    <state x="923" y="453" width="334" height="248" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1662864448511">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="923" y="453" width="334" height="248" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.2048.1152@0.0.2048.1152" timestamp="1662864448511" />
+    <state x="605" y="231" key="com.intellij.database.dbimport.ImportDialog" timestamp="1662862911485">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="605" y="231" key="com.intellij.database.dbimport.ImportDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1662862911485" />
+    <state x="367" y="314" width="798" height="523" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1662862373607">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="367" y="314" width="798" height="523" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1662862373607" />
+    <state x="446" y="474" width="679" height="204" key="com.intellij.database.view.ui.DatabasePreviewDialog" timestamp="1662862692950">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="446" y="474" width="679" height="204" key="com.intellij.database.view.ui.DatabasePreviewDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1662862692950" />
     <state x="805" y="381" key="git4idea.history.wholeTree.VcsStructureChooser" timestamp="1662840974116">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="805" y="381" key="git4idea.history.wholeTree.VcsStructureChooser/0.0.2048.1152@0.0.2048.1152" timestamp="1662840974116" />
+    <state x="824" y="476" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1662845122503">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="824" y="476" key="git4idea.remote.GitConfigureRemotesDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1662845122503" />
   </component>
 </project>

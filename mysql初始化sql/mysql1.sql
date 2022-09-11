@@ -21,6 +21,8 @@ CREATE USER  'testUser'@'%'  IDENTIFIED BY  'Tu123456';
 # 查看用户列表：
 select * from mysql.user;
 GRANT ALL ON  test.*  TO  'testUser'@'%';
+GRANT ALL ON  db1.*  TO  'testUser'@'%';
+
 revoke ALL ON  test.*  FROM  'testUser'@'%';
 FLUSH PRIVILEGES;
 show grants for testUser;
@@ -52,11 +54,6 @@ alter table student
 
 # 查看表结构：
 desc student;
-
-
-
-
-
 
 
 
