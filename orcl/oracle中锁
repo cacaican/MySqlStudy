@@ -1,0 +1,882 @@
+1      引言—数据库锁的基本概念
+为了确保并发用户在存取同一数据库对象时的正确性（即无丢失修改、可重复读、不读“脏”数据），数据库中引入了锁机制。基本的锁类型有两种：排它锁（Exclusive locks记为X锁）和共享锁（Sharelocks记为S锁）。
+
+排它锁：若事务T对数据D加X锁，则其它任何事务都不能再对D加任何类型的锁，直至T释放D上的X锁；一般要求在修改数据前要向该数据加排它锁，所以排它锁又称为写锁。
+
+共享锁：若事务T对数据D加S锁，则其它事务只能对D加S锁，而不能加X锁，直至T释放D上的S锁；一般要求在读取数据前要向该数据加共享锁，所以共享锁又称为读锁。
+
+2      Oracle 多粒度封锁机制介绍
+根据保护对象的不同，Oracle数据库锁可以分为以下几大类：
+
+(1)     DML lock（data locks，数据锁）：用于保护数据的完整性；
+
+(2)     DDL lock（dictionary locks，字典锁）：用于保护数据库对象的结构（例如表、视图、索引的结构定义）；
+
+(3)     internal locks 和l a t c h es（内部锁与闩）：保护内部数据库结构；
+
+(4)     distributed locks（分布式锁）：用于OPS（并行服务器）中；
+
+(5)     PCM locks（并行高速缓存管理锁）：用于OPS（并行服务器）中。
+
+本文主要讨论DML（也可称为datalocks，数据锁）锁。从封锁粒度（封锁对象的大小）的角度看，Oracle DML锁共有两个层次，即行级锁和表级锁。
+
+2.1   Oracle的TX锁（行级锁、事务锁）
+许多对Oracle不太了解的技术人员可能会以为每一个TX锁代表一条被封锁的数据行，其实不然。TX的本义是Transaction（事务），当一个事务第一次执行数据更改（Insert、Update、Delete）或使用SELECT… FOR UPDATE语句进行查询时，它即获得一个TX（事务）锁，直至该事务结束（执行COMMIT或ROLLBACK操作）时，该锁才被释放。所以，一个TX锁，可以对应多个被该事务锁定的数据行。
+
+在Oracle的每行数据上，都有一个标志位来表示该行数据是否被锁定。Oracle不象其它一些DBMS（数据库管理系统）那样，建立一个链表来维护每一行被加锁的数据，这样就大大减小了行级锁的维护开销，也在很大程度上避免了其它数据库系统使用行级封锁时经常发生的锁数量不够的情况。数据行上的锁标志一旦被置位，就表明该行数据被加X锁，Oracle在数据行上没有S锁。
+
+2.2   TM锁（表级锁）
+2.2.1  意向锁的引出
+表是由行组成的，当我们向某个表加锁时，一方面需要检查该锁的申请是否与原有的表级锁相容；另一方面，还要检查该锁是否与表中的每一行上的锁相容。比如一个事务要在一个表上加S锁，如果表中的一行已被另外的事务加了X锁，那么该锁的申请也应被阻塞。如果表中的数据很多，逐行检查锁标志的开销将很大，系统的性能将会受到影响。为了解决这个问题，可以在表级引入新的锁类型来表示其所属行的加锁情况，这就引出了“意向锁”的概念。
+
+意向锁的含义是如果对一个结点加意向锁，则说明该结点的下层结点正在被加锁；对任一结点加锁时，必须先对它的上层结点加意向锁。如：对表中的任一行加锁时，必须先对它所在的表加意向锁，然后再对该行加锁。这样一来，事务对表加锁时，就不再需要检查表中每行记录的锁标志位了，系统效率得以大大提高。
+
+2.2.2  意向锁的类型
+由两种基本的锁类型（S锁、X锁），可以自然地派生出两种意向锁：
+
+意向共享锁（Intent Share Lock，简称IS锁）：如果要对一个数据库对象加S锁，首先要对其上级结点加IS锁，表示它的后裔结点拟（意向）加S锁；
+
+意向排它锁（Intent Exclusive Lock，简称IX锁）：如果要对一个数据库对象加X锁，首先要对其上级结点加IX锁，表示它的后裔结点拟（意向）加X锁。
+
+另外，基本的锁类型（S、X）与意向锁类型（IS、IX）之间还可以组合出新的锁类型，理论上可以组合出4种，即：S+IS，S+IX，X+IS，X+IX，但稍加分析不难看出，实际上只有S+IX有新的意义，其它三种组合都没有使锁的强度得到提高（即：S+IS=S，X+IS=X，X+IX=X，这里的“=”指锁的强度相同）。所谓锁的强度是指对其它锁的排斥程度。
+
+这样我们又可以引入一种新的锁的类型
+
+共享意向排它锁（Shared Intent Exclusive Lock,简称SIX锁）：如果对一个数据库对象加SIX锁，表示对它加S锁，再加IX锁，即SIX=S+IX。例如：事务对某个表加SIX锁，则表示该事务要读整个表（所以要对该表加S锁），同时会更新个别行（所以要对该表加IX锁）。
+
+这样数据库对象上所加的锁类型就可能有5种：即S、X、IS、IX、SIX。
+
+具有意向锁的多粒度封锁方法中任意事务T要对一个数据库对象加锁，必须先对它的上层结点加意向锁。申请封锁时应按自上而下的次序进行；释放封锁时则应按自下而上的次序进行；具有意向锁的多粒度封锁方法提高了系统的并发度，减少了加锁和解锁的开销。
+
+2.2.3  Oracle的TM锁（表级锁）
+Oracle的DML锁（数据锁）正是采用了上面提到的多粒度封锁方法，其行级锁虽然只有一种（即X锁），但其TM锁（表级锁）类型共有5种，分别称为共享锁（S锁）、排它锁（X锁）、行级共享锁（RS锁）、行级排它锁（RX锁）、共享行级排它锁（SRX锁），与上面提到的S、X、IS、IX、SIX相对应。需要注意的是，由于Oracle在行级只提供X锁，所以与RS锁（通过SELECT … FOR UPDATE语句获得）对应的行级锁也是X锁（但是该行数据实际上还没有被修改），这与理论上的IS锁是有区别的。
+
+下表为Oracle数据库TM锁的相容矩阵（Y=Yes，表示相容的请求； N=No，表示不相容的请求；-表示没有加锁请求）：
+
+        T2
+
+T1
+
+S
+
+X
+
+RS
+
+RX
+
+SRX
+
+-
+
+S
+
+Y
+
+N
+
+Y
+
+N
+
+N
+
+Y
+
+X
+
+N
+
+N
+
+N
+
+N
+
+N
+
+Y
+
+RS
+
+Y
+
+N
+
+Y
+
+Y
+
+Y
+
+Y
+
+RX
+
+N
+
+N
+
+Y
+
+Y
+
+N
+
+Y
+
+SRX
+
+N
+
+N
+
+Y
+
+N
+
+N
+
+Y
+
+-
+
+Y
+
+Y
+
+Y
+
+Y
+
+Y
+
+Y
+
+表一：Oracle数据库TM锁的相容矩阵
+
+
+
+一方面，当Oracle执行SELECT…FORUPDATE、INSERT、UPDATE、DELETE等DML语句时，系统自动在所要操作的表上申请表级RS锁（SELECT…FORUPDATE）或RX锁（INSERT、UPDATE、DELETE），当表级锁获得后，系统再自动申请TX锁，并将实际锁定的数据行的锁标志位置位（指向该TX锁）；另一方面，程序或操作人员也可以通过LOCK TABLE语句来指定获得某种类型的TM锁。下表总结了Oracle中各SQL语句产生TM锁的情况：
+
+SQL语句
+
+表锁模式
+
+允许的锁模式
+
+Select * from table_name……
+
+无
+
+RS、RX、S、SRX、X
+
+Insert into table_name……
+
+RX
+
+RS、RX
+
+Update table_name……
+
+RX
+
+RS、RX
+
+Delete from table_name……
+
+RX
+
+RS、RX
+
+Select * from table_name for update
+
+RS
+
+RS、RX、S、SRX
+
+lock table table_name in row share mode
+
+RS
+
+RS、RX、S、SRX
+
+lock table table_name in row exclusive mode
+
+RX
+
+RS、RX
+
+lock table table_name in share mode
+
+S
+
+RS、S
+
+lock table table_name in share row exclusive mode
+
+SRX
+
+RS
+
+lock table table_name in exclusive mode
+
+X
+
+无
+
+表二：Oracle数据库TM锁小结
+
+
+
+我们可以看到，通常的DML操作（SELECT…FORUPDATE、INSERT、UPDATE、DELETE），在表级获得的只是意向锁（RS或RX），其真正的封锁粒度还是在行级；另外，Oracle数据库的一个显著特点是，在缺省情况下，单纯地读数据（SELECT）并不加锁，Oracle通过回滚段（Rollback segment）来保证用户不读“脏”数据。这些都极大地提高了系统的并发程度。
+
+由于意向锁及数据行上锁标志位的引入，极大地减小了Oracle维护行级锁的开销，这些技术的应用使Oracle能够高效地处理高度并发的事务请求。
+
+3      Oracle 多粒度封锁机制的监控
+3.1   系统视图介绍
+为了监控Oracle系统中锁的状况，我们需要对几个系统视图有所了解：
+
+3.1.1  v$lock视图
+v$lock视图列出当前系统持有的或正在申请的所有锁的情况，其主要字段说明如下：
+
+字段名称
+
+类型
+
+说明
+
+SID
+
+NUMBER
+
+会话（SESSION）标识；
+
+TYPE
+
+VARCHAR（2）
+
+区分该锁保护对象的类型；
+
+ID1
+
+NUMBER
+
+锁标识1；
+
+ID2
+
+NUMBER
+
+锁标识2；
+
+LMODE
+
+NUMBER
+
+锁模式：0（None），1（null）,2（row share）, 3（row exclusive）,4 （share）,5（share row exclusive）,6（exclusive）
+
+REQUEST
+
+NUMBER
+
+申请的锁模式：具体值同上面的LMODE
+
+CTIME
+
+NUMBER
+
+已持有或等待锁的时间；
+
+BLOCK
+
+NUMBER
+
+是否阻塞其它锁申请；
+
+表三：v$lock视图主要字段说明
+
+
+
+其中在TYPE字段的取值中，本文只关心TM、TX两种DML锁类型；
+
+关于ID1、ID2，TYPE取值不同其含义也有所不同：
+
+TYPE
+
+ID1
+
+ID2
+
+TM
+
+被修改表的标识（object_id）
+
+0
+
+TX
+
+以十进制数值表示该事务所占用的回滚段号与该事务在该回滚段的事务表（Transaction table）中所占用的槽号（slot number，可理解为记录号）。其组成形式为： 0xRRRRSSSS ( RRRR = RBS number, SSSS = slot )。
+
+以十进制数值表示环绕（wrap）次数，即该槽（slot）被重用的次数；
+
+表四：v$lock视图中ID1与ID2字段取值说明
+
+3.1.2  v$locked_object视图
+v$locked_object视图列出当前系统中哪些对象正被锁定，其主要字段说明如下：
+
+字段名称
+
+类型
+
+说明
+
+XIDUSN
+
+NUMBER
+
+回滚段号；
+
+XIDSLOT
+
+NUMBER
+
+槽号；
+
+XIDSQN
+
+NUMBER
+
+序列号；
+
+OBJECT_ID
+
+NUMBER
+
+被锁对象标识；
+
+SESSION_ID
+
+NUMBER
+
+持有锁的会话（SESSION）标识；
+
+ORACLE_USERNAME
+
+VARCHAR2（30）
+
+持有该锁的用户的Oracle用户名；
+
+OS_USER_NAME
+
+VARCHAR2（15）
+
+持有该锁的用户的操作系统用户名；
+
+PROCESS
+
+VARCHAR2（9）
+
+操作系统的进程号；
+
+LOCKED_MODE
+
+NUMBER
+
+锁模式，取值同表三中的LMODE；
+
+表五：v$locked_object视图字段说明
+
+3.2   监控脚本
+根据上述系统视图，可以编制脚本来监控数据库中锁的状况。
+
+3.2.1  showlock.sql
+第一个脚本showlock.sql，该脚本通过连接v$locked_object与all_objects两视图，显示哪些对象被哪些会话锁住：
+
+/* showlock.sql */
+
+column o_name format a10
+
+column lock_type format a20
+
+column object_name format a15
+
+select rpad(oracle_username,10)o_name,session_id sid,
+
+       decode(locked_mode,0,'None',1,'Null',2,'Rowshare',
+
+       3,'RowExclusive',4,'Share',5,'Share Row Exclusive',6,'Exclusive') lock_type,
+
+       object_name,xidusn,xidslot,xidsqn
+
+from v$locked_object,all_objects
+
+wherev$locked_object.object_id=all_objects.object_id;
+
+3.2.2  showalllock.sql
+第二个脚本showalllock.sql，该脚本主要显示当前所有TM、TX锁的信息；
+
+/* showalllock.sql */
+
+select sid,type,id1,id2,
+
+       decode(lmode,0,'None',1,'Null',2,'Row share',
+
+       3,'Row Exclusive',4,'Share',5,'Share Row Exclusive',6,'Exclusive')
+
+       lock_type,request,ctime,block
+
+from v$lock
+
+where TYPE IN('TX','TM');
+
+4      Oracle 多粒度封锁机制示例
+以下示例均运行在Oracle 8.1.7上，数据库版本不同，其输出结果也可能有所不同。首先建立3个会话，其中两个（以下用SESS#1、SESS#2表示）以SCOTT用户连入数据库，以操作Oracle提供的示例表（DEPT、EMP）；另一个（以下用SESS#3表示）以SYS用户连入数据库，用于监控；
+
+4.1   操作同一行数据引发的锁阻塞
+SESS#1：
+
+SQL> select * from dept for update;
+
+   DEPTNO DNAME          LOC
+
+---------- -------------- -------------
+
+       10 account        70
+
+       20 research       8
+
+       30 sales          8
+
+       40 operations     8
+
+SESS#3：
+
+SQL> @showlock
+
+O_NAME       SID LOCK_TYPE       OBJECT_NAME     XIDUSN XIDSLOT XIDSQN
+
+---------- ----- ------------------------------ ------ ------- ------
+
+SCOTT         17 Row share       DEPT                 8       2   5861
+
+SQL> @showalllock
+
+ SID TY        ID1        ID2 LOCK_TYPE          REQUEST      CTIME     BLOCK
+
+----- -- ---------- ------------------------- ---------- ---------- ----------
+
+  17 TX     524290       5861 Exclusive                0        761          0
+
+  17 TM      32970          0 Row share                0        761          0
+
+
+
+如第一个脚本showlock所示，执行完SELECT…FOR UPDATE 语句后， SESS#1（SID为17）在DEPT表上获得Row share锁；如第二个脚本showalllock所示，SESS#1获得的TX锁为Exclusive，这些都验证了上面的理论分析。另外，我们可以将TX锁的ID1按如下方法进行分解：
+
+SQL> select trunc(524290/65536)xidusn,mod(524290,65536) xidslot from dual;
+
+XIDUSN XIDSLOT
+
+------ -------
+
+    8       2
+
+分解结果与第一个脚本直接查出来的XIDUSN与XIDSLOT相同，而TX锁的ID2（5861）与XIDSQN相同，可见当LOCK TYPE为TX时，ID1实际上是该事务所占用的回滚段段号与事务表中的槽（SLOT）号的组合，ID2即为该槽被重用的次数，而这三个值实际上可以唯一地标识一个事务，即TRANSACTIONID，这三个值从系统表v$transaction中也可查到。
+
+另外， DEPT表中有4条记录被锁定，但TX锁只有1个，这也与上面的理论分析一致。继续进行操作：
+
+SESS#2：
+
+SQL> update dept set loc=loc wheredeptno=20;
+
+该更新语句被阻塞，此时再查看系统的锁情况：
+
+SESS#3：
+
+SQL> @showlock
+
+O_NAME       SID LOCK_TYPE       OBJECT_NAME     XIDUSN XIDSLOT XIDSQN
+
+---------- ----- ------------------------------ ------ ------- ------
+
+SCOTT         17 Row share       DEPT                 8       2   5861
+
+SCOTT         19 Row Exclusive   DEPT                 0       0     0
+
+SQL> @showalllock
+
+ SID TY        ID1        ID2 LOCK_TYPE          REQUEST      CTIME     BLOCK
+
+----- -- ---------- ------------------------- ---------- ---------- ----------
+
+  17 TX     524290       5861 Exclusive                0       3462          1
+
+  17 TM      32970          0 Row share                0       3462          0
+
+  19 TM      32970          0 Row Exclusive            0          7          0
+
+  19 TX     524290       5861 None                     6          7          0
+
+在DEPT表上除了SESS#1（SID为17）持有Row share锁外，又增加了SESS#2（SID为19）持有的RowExclusive锁，但还没有为SESS#2分配回滚段（XIDUSN、XIDSLOT、XIDSQN的值均为0）；而从第二个脚本看到，SESS#2的TX锁的LOCK_TYPE为None，其申请的锁类型（REQUEST）为6（即Exclusive），而其ID1、ID2的值与SESS#1所持有的TX锁的ID1、ID2相同，SESS#1的TX锁的阻塞域（BLOCK）为1，这就说明了由于SESS#1持有的TX锁，阻塞了SESS#2的更新操作（SESS#2所更新的行与SESS#1所锁定的行相冲突）。还可以看出，SESS#2先申请表级的TM锁，后申请行（事务）级的TX锁，这也与前面的理论分析一致。
+
+下面，将SESS#1的事务进行回滚，解除对SESS#2的阻塞，再对系统进行监控。
+
+SESS#3：
+
+SQL> @showlock
+
+O_NAME       SID LOCK_TYPE       OBJECT_NAME     XIDUSN XIDSLOT XIDSQN
+
+---------- ----- ------------------------------ ------ ------- ------
+
+SCOTT         19 Row Exclusive   DEPT                 2      10  5803
+
+SQL> @showalllock
+
+ SID TY        ID1        ID2 LOCK_TYPE          REQUEST      CTIME     BLOCK
+
+----- -- ---------- ------------------------- ---------- ---------- ----------
+
+  19 TX     131082       5803 Exclusive                0        157          0
+
+  19 TM      32970          0 Row Exclusive            0        333          0
+
+可以看到，SESS#1的事务所持有的锁已经释放，系统为SESS#2的事务分配了回滚段，而其TX锁也已经获得，并且ID1、ID2是其真正的Transaction ID。再将会话2的事务进行回滚。
+
+SESS#2：
+
+SQL> rollback;
+
+Rollback complete.
+
+检查系统锁的情况：
+
+SESS#3：
+
+SQL> @showlock
+
+no rows selected
+
+SQL> @showalllock
+
+no rows selected
+
+可以看到，TM与TX锁已全部被释放。
+
+4.2   实体完整性引发的锁阻塞
+DEPT（部门）表有如下字段DEPTNO（部门编号），DNAME（部门名称），LOC（部门位置）；其中DEPTNO列为主键。
+
+SESS#1
+
+SQL> INSERT INTO DEPT(DEPTNO)VALUES(50);
+
+1 row created.
+
+SESS#3
+
+SQL> @showlock
+
+O_NAME       SID LOCK_TYPE       OBJECT_NAME     XIDUSN XIDSLOT XIDSQN
+
+---------- ----- --------------- --------------------- ------- ------
+
+SCOTT          7 Row Exclusive   DEPT                 6      88    29
+
+SQL> @showalllock
+
+ SID TY        ID1        ID2 LOCK_TYPE          REQUEST      CTIME     BLOCK
+
+----- -- ---------- ------------------------- ---------- ---------- ----------
+
+   7 TX     393304         29 Exclusive                0          6          0
+
+7 TM       3574          0 Row Exclusive            0          6          0
+
+向DEPT表中插入一条DEPTNO为50的记录后，SESS#1（SID为7）在DEPT表上获得RowExclusive锁，并且由于进行了数据插入，该事务被分配了回滚段，获得TX锁。
+
+SESS#2
+
+INSERT INTO DEPT(DEPTNO) VALUES(50);
+
+这时，SESS#2（SID为8）也向DEPT表中插入一条DEPTNO为50的记录，该语句被阻塞，检查锁情况：
+
+SESS#3
+
+SQL> @showlock
+
+O_NAME       SID LOCK_TYPE       OBJECT_NAME     XIDUSN XIDSLOT XIDSQN
+
+---------- ----- ------------------------------ ------ ------- ------
+
+SCOTT          8 Row Exclusive   DEPT                 7      75    30
+
+SCOTT          7 Row Exclusive   DEPT                 6      88    29
+
+SQL> @showalllock
+
+ SID TY        ID1        ID2 LOCK_TYPE          REQUEST      CTIME     BLOCK
+
+----- -- ---------- ------------------------- ---------- ---------- ----------
+
+   7 TX     393304         29 Exclusive                0         92          1
+
+   7 TM       3574         0 Row Exclusive            0         92          0
+
+   8 TX     458827         30 Exclusive                0         22          0
+
+   8 TM       3574          0 Row Exclusive            0         22          0
+
+8 TX     393304         29 None                     4         22          0
+
+SESS#2在DEPT表上也获得了RowExclusive锁，同样也获得了回滚段的分配，得到TX锁，但是由于其插入的记录与SESS#1插入的记录的DEPTNO均为50，该语句成功与否取决于SESS#1的事务是提交还是回滚，所以SESS#2被阻塞，表现为SESS#2以Share方式（REQUEST=4）等待SESS#1所持有的TX锁的释放。
+
+这时，如果SESS#1进行回滚：
+
+SESS#1
+
+SQL> ROLLBACK;
+
+Rollback complete.
+
+SESS#2
+
+1 row created.
+
+SESS#3
+
+SQL> @showlock
+
+O_NAME       SID LOCK_TYPE       OBJECT_NAME     XIDUSN XIDSLOT XIDSQN
+
+---------- ----- ------------------------------ ------ ------- ------
+
+SCOTT          8 Row Exclusive   DEPT                 7      75    30
+
+SQL> @showalllock
+
+ SID TY        ID1        ID2 LOCK_TYPE          REQUEST      CTIME     BLOCK
+
+----- -- ---------- ------------------------- ---------- ---------- ----------
+
+   8 TX     458827         30 Exclusive                0        136          0
+
+   8 TM       3574          0 Row Exclusive            0        136          0
+
+SESS#2的阻塞将被解除，SESS#2只持有原先已有的TM与TX锁，其等待的TX锁（由SESS#1持有）也消失了。
+
+如果SESS#1提交而不是回滚，在SESS#2上将会出现如下提示：
+
+ERROR at line 1:
+
+ORA-00001: unique constraint(SCOTT.PK_DEPT) violated错误。
+
+即发生主键冲突，SESS#1与SESS#2的所有锁资源均被释放。
+
+4.3   参照完整性引发的锁阻塞
+EMP（员工）表有如下字段：EMPNO（员工编号），ENAME（员工姓名），DEPTNO（员工所在部门编号），其中DEPTNO列为外键，其父表为DEPT。
+
+SESS#1
+
+SQL> insert into dept(deptno)values(60);
+
+1 row created.
+
+SESS#3
+
+SQL> @showlock
+
+O_NAME       SID LOCK_TYPE       OBJECT_NAME    XIDUSN XIDSLOT XIDSQN
+
+---------- ----- ------------------------------ ------ ------- ------
+
+SCOTT          7 Row Exclusive   DEPT                 2       6    33
+
+SQL> @showalllock
+
+ SID TY        ID1        ID2 LOCK_TYPE          REQUEST      CTIME     BLOCK
+
+----- -- ---------- ------------------------- ---------- ---------- ----------
+
+   7 TX     131078         33 Exclusive                0        148          0
+
+   7 TM       3574          0 Row Exclusive            0        148         0
+
+SESS#1（SID为7）在DEPT表中先插入一条DEPTNO为60的记录，SESS#1获得了DEPT表上的Row Exclusive锁，及一个TX锁。
+
+SESS#2
+
+insert into emp(empno,deptno)values(2000,60)；
+
+被阻塞
+
+SESS#3
+
+SQL> @showlock
+
+O_NAME       SID LOCK_TYPE       OBJECT_NAME     XIDUSN XIDSLOT XIDSQN
+
+---------- ----- ------------------------------ ------ ------- ------
+
+SCOTT          7 Row Exclusive   DEPT                 2       6    33
+
+SCOTT          8 Row Exclusive   EMP                  3      20    31
+
+SQL> @showalllock
+
+ SID TY        ID1        ID2 LOCK_TYPE          REQUEST     CTIME      BLOCK
+
+----- -- ---------- ------------------------- ---------- ---------- ----------
+
+   7 TX     131078         33 Exclusive                0        228          1
+
+   7 TM       3574          0 Row Exclusive            0        228         0
+
+   8 TX     196628         31 Exclusive                0          9          0
+
+   8 TM       3576          0 Row Exclusive            0          9          0
+
+   8 TX     131078         33 None                     4          9          0
+
+SESS#2（SID为8）向EMP表中出入一条新记录，该记录DEPT值为60（即SESS#1刚插入，但还未提交的记录的DEPTNO值），SESS#2获得了EMP表上的Row Exclusive锁，另外由于插入记录，还分配了回滚段及一个TX锁，但由于SESS#2的插入语句是否成功取决于SESS#1的事务是否进行提交，所以它被阻塞，表现为SESS#2以Share（REQUEST=4）方式等待SESS#1释放其持有的TX锁。这时SESS#1如果提交，SESS#2的插入也将执行成功，而如果SESS#1回滚，由于不符合参照完整性，SESS#2将报错：
+
+SESS#2
+
+insert into emp(empno,deptno)values(2000,60)
+
+*
+
+ERROR at line 1:
+
+ORA-02291: integrity constraint(SCOTT.FK_DEPTNO) violated - parent key not
+
+Found
+
+SESS#2持有的锁也被全部释放。
+
+4.4   外键未加索引引发的锁阻塞
+EMP表上的DEPTNO列为外键，但没有在该列上建索引。
+
+SESS#1
+
+SQL> delete emp where 0=1;
+
+0 rows deleted.
+
+SESS#3：
+
+SQL> @showlock
+
+O_NAME       SID LOCK_TYPE       OBJECT_NAME     XIDUSN XIDSLOT XIDSQN
+
+---------- ----- ------------------------------ ------ ------- ------
+
+SCOTT          7 Row Exclusive   EMP                  0       0     0
+
+SQL> @showalllock
+
+ SID TY        ID1        ID2 LOCK_TYPE          REQUEST      CTIME     BLOCK
+
+----- -- ---------- ------------------------- ---------- ---------- ----------
+
+7 TM       3576          0 Row Exclusive            0         10         0
+
+首先SESS#1（SID为7）做了一个删除操作，但由于条件（0=1）为永假，所以实际上并没有一行被删除，从监控脚本可以看出SESS#1在EMP表上获得RowExclusive锁，但由于没有实际的行被删除，所以并没有TX锁，也没有为SESS#1分配回滚段。
+
+SESS#2：
+
+SQL> delete dept where 0=1;
+
+该语句虽然也不会删除实际数据，但却被阻塞，查看系统的锁情况：
+
+SESS#3：
+
+SQL> @showlock
+
+O_NAME       SID LOCK_TYPE       OBJECT_NAME     XIDUSN XIDSLOT XIDSQN
+
+---------- ----- ------------------------------ ------ ------- ------
+
+SCOTT          8 None            EMP                  0       0     0
+
+SCOTT          7 Row Exclusive   EMP                  0       0     0
+
+SQL> @showalllock
+
+ SID TY        ID1        ID2 LOCK_TYPE          REQUEST      CTIME     BLOCK
+
+----- -- ---------- ------------------------- ---------- ---------- ----------
+
+   7 TM       3576          0 Row Exclusive            0         31          1
+
+    8 TM      3576          0 None                     4         12          0
+
+SESS#2申请在EMP表上加SHARE锁（REQUEST=4），但该申请被SESS#1阻塞，因为SESS#1已经在EMP表上获得了Row Exclusive锁，与SHARE锁不相容。
+
+下面我们对SESS#1进行回滚后，再进行监控。
+
+SESS#3：
+
+SQL> @showlock
+
+O_NAME       SID LOCK_TYPE       OBJECT_NAME     XIDUSN XIDSLOT XIDSQN
+
+---------- ----- ------------------------------ ------ ------- ------
+
+SCOTT          8 Share           EMP                  0       0     0
+
+SCOTT          8 Row Exclusive   DEPT                 0       0     0
+
+SQL> @showalllock
+
+ SID TY        ID1        ID2 LOCK_TYPE          REQUEST      CTIME     BLOCK
+
+----- -- ---------- ------------------------- ---------- ---------- ----------
+
+   8 TM       3574          0 Row Exclusive            0         16          0
+
+8 TM       3576          0 Share                    0         16          0
+
+SESS#2在EMP表上获得Share锁后，又在DEPT表上获得Row Exclusive锁，由于没有实际的行被修改，SESS#2并没有获得TX锁。
+
+在Oracle8中，如果子表的外键上没有加索引，当在父表上删除记录时，会先在子表上申请获得Share锁，之后再在父表上申请RowExclusive锁。由于表级Share锁的封锁粒度较大，所以容易引起阻塞，从而造成性能问题。
+
+当在外键上建立索引后，在父表上删除数据将不再对子表上加Share锁，如下所示：
+
+SESS#1：
+
+SQL> create index i_emp_deptno onemp(deptno);
+
+Index created.
+
+SQL> delete dept where 0=1;
+
+0 rows deleted.
+
+SQL>
+
+SQL> @showlock
+
+O_NAME       SID LOCK_TYPE       OBJECT_NAME     XIDUSN XIDSLOT XIDSQN
+
+---------- ----- ------------------------------ ------ ------- ------
+
+SCOTT          7 Row Exclusive   DEPT                 0       0     0
+
+SQL> @showalllock
+
+ SID TY        ID1        ID2 LOCK_TYPE          REQUEST      CTIME     BLOCK
+
+----- -- ---------- ------------------------- ---------- ---------- ----------
+
+   7 TM       3574          0 Row Exclusive            0          9          0
+
+可以看到，在EMP表DEPTNO列上建立索引后，在DEPT表上执行DELETE操作，不再要求在EMP表上加Share锁，只是在DEPT表上加Row Exclusive锁，封锁的粒度减小，引起阻塞的可能性也减小。
+
+5      Oracle 多粒度封锁机制总结
+Oracle通过具有意向锁的多粒度封锁机制进行并发控制，保证数据的一致性。其DML锁（数据锁）分为两个层次（粒度）：即表级和行级。通常的DML操作在表级获得的只是意向锁（RS或RX），其真正的封锁粒度还是在行级；另外，在Oracle数据库中，单纯地读数据（SELECT）并不加锁，这些都极大地提高了系统的并发程度。
+
+在支持高并发度的同时，Oracle利用意向锁及数据行上加锁标志位等设计技巧，减小了Oracle维护行级锁的开销，使其在数据库并发控制方面有着明显的优势
+————————————————
+版权声明：本文为CSDN博主「ForKing_」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/toratto/article/details/10155283

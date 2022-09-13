@@ -55,6 +55,8 @@ alter table student
 # 查看表结构：
 desc student;
 
+select * from  car where brand like '%凤%';
+
 
 
 

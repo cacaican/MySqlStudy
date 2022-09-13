@@ -10,23 +10,23 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c970340-028d-45b8-9247-62f1791e637e" name="默认的" comment="不知道什么文件">
-      <change afterPath="$PROJECT_DIR$/mysql初始化sql/aa.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysql初始化sql/mysql中写存储过程.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysql初始化sql/mysql中创建视图.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysql初始化sql/mysql中定义function.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysql初始化sql/mysql服务状态命令.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysql初始化sql/临时表.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysql初始化sql/分组.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysql初始化sql/创建物化视图.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysql初始化sql/复制表.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysql初始化sql/序列.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysql初始化sql/索引.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysql初始化sql/连接查询.sql" afterDir="false" />
+    <list default="true" id="8c970340-028d-45b8-9247-62f1791e637e" name="默认的" comment="参考网上教程写了一些常用的sql，包括各个组件的使用，连接查询和常用函数等等等">
+      <change afterPath="$PROJECT_DIR$/mysql.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orcl/oracle.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orcl/oracle中锁" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orcl/oracle查看隔离级别.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/笔记本中的mysql/base/jpa.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/笔记本中的mysql/mysql8.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/笔记本中的mysql/mysql账户管理.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/笔记本中的mysql/数据库分区.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9227b130-7c08-4be3-9a23-079521e085e5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9227b130-7c08-4be3-9a23-079521e085e5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/67ba38c0-73df-4a74-be61-2b5a03978da4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/67ba38c0-73df-4a74-be61-2b5a03978da4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/67ba38c0-73df-4a74-be61-2b5a03978da4/storage_v2/_src_/schema/C__XIAOCAI.KfPLFw.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/67ba38c0-73df-4a74-be61-2b5a03978da4/storage_v2/_src_/schema/C__XIAOCAI.KfPLFw.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/67ba38c0-73df-4a74-be61-2b5a03978da4/storage_v2/_src_/schema/PUBLIC.aaZQjQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/67ba38c0-73df-4a74-be61-2b5a03978da4/storage_v2/_src_/schema/PUBLIC.aaZQjQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql初始化sql/mysql1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/mysql初始化sql/mysql1.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql初始化sql/mysql服务状态命令.sql" beforeDir="false" afterPath="$PROJECT_DIR$/mysql初始化sql/mysql服务状态命令.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,11 +34,6 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2EafORv1NDpkyx2MGkaBvLllQfI" />
@@ -57,11 +52,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/新建草稿文件" value="MySQL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/orcl" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\dataGripSpace\default\MysqlStudy" />
       <recent name="D:\workspace\dataGripSpace\default\MysqlStudy\orcl" />
       <recent name="D:\workspace\dataGripSpace\default\MysqlStudy\mysql初始化sql" />
       <recent name="C:\Users\xiaocai\AppData\Roaming\JetBrains\DataGrip2020.2\scratches" />
@@ -124,54 +120,50 @@
     <option name="LAST_COMMIT_MESSAGE" value="不知道什么文件" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="842" y="252" width="814" height="767" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1662843787820">
+    <state x="842" y="252" width="814" height="767" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1662964450205">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="842" y="252" width="814" height="767" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1662843787820" />
+    <state x="842" y="252" width="814" height="767" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1662964450205" />
+    <state x="854" y="377" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1663032365275">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="854" y="377" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2048.1152@0.0.2048.1152" timestamp="1663032365275" />
     <state x="300" y="331" key="FileChooserDialogImpl" timestamp="1662841164810">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="300" y="331" key="FileChooserDialogImpl/0.0.2048.1152@0.0.2048.1152" timestamp="1662841164810" />
-    <state width="1688" height="134" key="GridCell.Tab.0.bottom" timestamp="1662864882250">
+    <state width="1688" height="267" key="GridCell.Tab.0.bottom" timestamp="1662969234959">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="134" key="GridCell.Tab.0.bottom/0.0.2048.1152@0.0.2048.1152" timestamp="1662864882250" />
-    <state width="1688" height="134" key="GridCell.Tab.0.center" timestamp="1662864882250">
+    <state width="1688" height="267" key="GridCell.Tab.0.bottom/0.0.2048.1152@0.0.2048.1152" timestamp="1662969234959" />
+    <state width="1688" height="267" key="GridCell.Tab.0.center" timestamp="1662969234959">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="134" key="GridCell.Tab.0.center/0.0.2048.1152@0.0.2048.1152" timestamp="1662864882250" />
-    <state width="1688" height="134" key="GridCell.Tab.0.left" timestamp="1662864882250">
+    <state width="1688" height="267" key="GridCell.Tab.0.center/0.0.2048.1152@0.0.2048.1152" timestamp="1662969234959" />
+    <state width="1688" height="267" key="GridCell.Tab.0.left" timestamp="1662969234959">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="134" key="GridCell.Tab.0.left/0.0.2048.1152@0.0.2048.1152" timestamp="1662864882250" />
-    <state width="1688" height="134" key="GridCell.Tab.0.right" timestamp="1662864882250">
+    <state width="1688" height="267" key="GridCell.Tab.0.left/0.0.2048.1152@0.0.2048.1152" timestamp="1662969234959" />
+    <state width="1688" height="267" key="GridCell.Tab.0.right" timestamp="1662969234959">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state width="1688" height="134" key="GridCell.Tab.0.right/0.0.2048.1152@0.0.2048.1152" timestamp="1662864882250" />
+    <state width="1688" height="267" key="GridCell.Tab.0.right/0.0.2048.1152@0.0.2048.1152" timestamp="1662969234959" />
     <state x="21" y="221" key="SettingsEditor" timestamp="1662840922558">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="21" y="221" key="SettingsEditor/0.0.2048.1152@0.0.2048.1152" timestamp="1662840922558" />
-    <state x="112" y="309" key="Vcs.Push.Dialog.v2" timestamp="1662845091593">
+    <state x="112" y="309" key="Vcs.Push.Dialog.v2" timestamp="1662842046071">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="112" y="309" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1662845091593" />
-    <state x="923" y="453" width="334" height="248" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1662864448511">
+    <state x="112" y="309" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1662842046071" />
+    <state x="924" y="463" width="334" height="248" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1662882778571">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="923" y="453" width="334" height="248" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.2048.1152@0.0.2048.1152" timestamp="1662864448511" />
-    <state x="605" y="231" key="com.intellij.database.dbimport.ImportDialog" timestamp="1662862911485">
+    <state x="924" y="463" width="334" height="248" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.2048.1152@0.0.2048.1152" timestamp="1662882778571" />
+    <state x="338" y="347" width="842" height="457" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1662882833605">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="605" y="231" key="com.intellij.database.dbimport.ImportDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1662862911485" />
-    <state x="367" y="314" width="798" height="523" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1662862373607">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state x="367" y="314" width="798" height="523" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1662862373607" />
-    <state x="446" y="474" width="679" height="204" key="com.intellij.database.view.ui.DatabasePreviewDialog" timestamp="1662862692950">
-      <screen x="0" y="0" width="2048" height="1152" />
-    </state>
-    <state x="446" y="474" width="679" height="204" key="com.intellij.database.view.ui.DatabasePreviewDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1662862692950" />
+    <state x="338" y="347" width="842" height="457" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1662882833605" />
     <state x="805" y="381" key="git4idea.history.wholeTree.VcsStructureChooser" timestamp="1662840974116">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
